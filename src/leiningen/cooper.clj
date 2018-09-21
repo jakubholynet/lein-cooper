@@ -58,7 +58,8 @@
   (let [cooper (:cooper project)]
     (doall
      (for [proc-name (keys cooper)]
-       (assoc (apply sh/proc (cooper proc-name)) :name proc-name)))))
+       (assoc (apply sh/proc (map str (cooper proc-name)))
+              :name proc-name)))))
 
 (defn- get-procs-from-procfile []
   (with-open [buffer (io/reader "Procfile")]
